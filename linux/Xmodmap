@@ -1,0 +1,5 @@
+! Rebind Esc with Caps_Lock for better vim usage
+remove Lock = Caps_Lock
+keysym Escape = Caps_Lock
+keysym Caps_Lock = Escape
+add lock = Caps_Lock

@@ -1,0 +1,17 @@
+# ~/.tmuxinator/fshare.yml
+
+name: fshare
+root: ~/Dev/FileShare/
+
+
+windows:
+  - vim:
+      panes:
+        - vim FileShare
+  - git:
+      panes:
+        - source .venv/bin/activate
+  - server: 
+      panes:
+        - .venv/bin/python FileShare/fshare/manage.py runserver
+ 

@@ -1,0 +1,53 @@
+set enc=utf-8       " Encoding UTF-8
+set number          " Shows line number
+set showmatch       " Show bracket matches
+set visualbell
+set hlsearch        " Highlight all search matches
+set smartcase       " Pay attention to case when caps
+set ignorecase      " Ignore case when search
+set incsearch       " Show search results when typing
+set autoindent      " Set autoindent
+set expandtab       " Use spaces, not tabs
+set ts=4            " Set indent 4 spaces
+set shiftwidth=4
+set smartindent
+set smarttab
+set softtabstop=4
+set ruler
+set undolevels=1000 " Steps of undo
+set backspace=indent,eol,start
+set relativenumber  " Changes line nr to relatives
+set cursorline      " Hilight current line
+set nocompatible    " Remove compatibility with vi
+set path+=**        " Better find
+set wildmenu        " Display all matching files
+set laststatus=2    " File path in status
+set t_Co=256
+
+" Vim swap files and backups directory
+set backupdir=~/.vim/backup
+set directory=~/.vim/backup
+
+colorscheme wombat256mod " Sets colorscheme
+
+"" Code coloring and indention base ond filetype
+syntax on
+filetype indent on
+filetype plugin on
+
+" Airline
+let g:airline_powerline_fonts=1
+let g:airline#extensions#branch#enabled=1
+
+" Hide banner on edit file browser
+let g:netrw_banner=0
+
+" vim plug
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'edkolev/tmuxline.vim'
+Plug 'tpope/vim-fugitive'
+call plug#end()
+

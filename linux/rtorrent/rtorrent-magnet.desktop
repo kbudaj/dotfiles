@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Rtorrent-Magnet
+Exec=~/.local/bin/rtorrent-magnet %U
+MimeType=application/x-bittorrent;x-scheme-handler/magnet;
