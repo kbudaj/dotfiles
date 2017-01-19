@@ -18,7 +18,7 @@ URxvt.cursorBlink: False
 
 ! Extensions
 URxvt.perl-ext-common: default,clipboard,keyboard-select,url-select,matcher
-URxvt.url-launcher: /usr/bin/firefox
+URxvt.url-launcher: /usr/bin/google-chrome-unstable
 URxvt.matcher.button: 1
 URxvt.underlineURLs: True
 URxvt*colorUL: #86a2be
@@ -72,10 +72,15 @@ URxvt.keysym.M-u: perl:url-select:select_next
 !URxvt.letterSpace: -1
 
 !Terminus
-URxvt.font: xft:Terminus-12
-URxvt.boldFont: xft:Terminus-12
+URxvt.font: xft:xos4 Terminus-10
+URxvt.boldFont: xft:xos4 Terminus-10
 
+!Hack
+!URxvt.font: xft:Hack-10
+!URxvt.boldfont: xft:Hack-10
 ! XTerm
+
+!URxvt.font: xft:Terminess Powerline-10
 
 ! General settings
 XTerm*termName: xterm-256color

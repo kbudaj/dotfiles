@@ -24,12 +24,18 @@ set path+=**        " Better find
 set wildmenu        " Display all matching files
 set laststatus=2    " File path in status
 set t_Co=256        " 256 colors
+set clipboard=unnamed " Make yank copy to global clipboard
+set list lcs=trail:·,tab:»· " Prettier white space characters
+let mapleader = "," " Sets map leader
 
 " Vim swap files and backups directory
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
-colorscheme monokai " Sets colorscheme
+" Flake8 remap
+autocmd FileType python map <Leader>c :call Flake8()<CR>
+
+colorscheme Monokai " Sets colorscheme
 
 "" Code coloring and indention base ond filetype
 syntax on
@@ -50,5 +56,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'nvie/vim-flake8'
 call plug#end()
 
