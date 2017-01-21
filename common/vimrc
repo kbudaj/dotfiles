@@ -6,6 +6,8 @@ set hlsearch        " Highlight all search matches
 set smartcase       " Pay attention to case when caps
 set ignorecase      " Ignore case when search
 set incsearch       " Show search results when typing
+set hidden          " Allows to change buffer without saving
+set timeout timeoutlen=5000 ttimeoutlen=100 " Fixes lag on shift+O
 "" Indention settings
 set autoindent      " Sets same indention on new line
 set expandtab       " Use spaces, not tabs
@@ -45,13 +47,12 @@ filetype plugin on
 " Airline
 let g:airline_powerline_fonts=1 " Uses powerline fonts
 let g:airline#extensions#branch#enabled=1 " Shows current branch
-
+let g:airline#extensions#tabline#enabled = 1 " Show buffers in tabs
 " Hide banner on edit file browser
 let g:netrw_banner=0
 
 " vim plug
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
