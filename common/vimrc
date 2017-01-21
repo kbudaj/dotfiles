@@ -44,19 +44,28 @@ syntax on
 filetype indent on
 filetype plugin on
 
+" Hide banner on edit file browser
+let g:netrw_banner=0
+
 " Airline
 let g:airline_powerline_fonts=1 " Uses powerline fonts
 let g:airline#extensions#branch#enabled=1 " Shows current branch
 let g:airline#extensions#tabline#enabled = 1 " Show buffers in tabs
-" Hide banner on edit file browser
-let g:netrw_banner=0
+
+" Jedi-vim
+let g:jedi#goto_definitions_command = "<leader>]"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#popup_on_dot = 0
+autocmd FileType python setlocal completeopt-=preview
 
 " vim plug
 call plug#begin('~/.vim/plugged')
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'nvie/vim-flake8'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
