@@ -1,3 +1,4 @@
+set encoding=utf-8
 set enc=utf-8       " Encoding UTF-8
 set number          " Shows line number
 set showmatch       " Show bracket matches
@@ -8,13 +9,11 @@ set ignorecase      " Ignore case when search
 set incsearch       " Show search results when typing
 set hidden          " Allows to change buffer without saving
 set timeout timeoutlen=5000 ttimeoutlen=100 " Fixes lag on shift+O
-"" Indention settings
 set autoindent      " Sets same indention on new line
 set expandtab       " Use spaces, not tabs
 set ts=4            " Set indent 4 spaces
 set shiftwidth=4    " How much to indent using >>
 set softtabstop=4   " Affects tab press
-
 set ruler
 set colorcolumn=79  " Vertical ruler, PEP8 helper
 set undolevels=1000 " Steps of undo
@@ -28,16 +27,30 @@ set laststatus=2    " File path in status
 set t_Co=256        " 256 colors
 set clipboard=unnamed " Make yank copy to global clipboard
 set list lcs=trail:·,tab:»· " Prettier white space characters
+set splitright      " Makes split open on right
 let mapleader = "," " Sets map leader
+
+"" Indention for html
+autocmd Filetype html setlocal ts=2 sts=2 sw=2
+
+"" Auto resize split on window resize
+autocmd VimResized * wincmd =
+
+"" Possible fix for slow redrawing
+set lazyredraw
+set ttyfast
+
+" Quicker buffer change
+map <C-J> :bnext<CR>
+map <C-K> :bprev<CR>
 
 " Vim swap files and backups directory
 set backupdir=~/.vim/backup
 set directory=~/.vim/backup
 
-" Flake8 remap
-autocmd FileType python map <Leader>c :call Flake8()<CR>
 
-colorscheme Monokai " Sets colorscheme
+set t_Co=256 " Terminal 256 colors
+set bg=dark " Dark background
 
 "" Code coloring and indention base ond filetype
 syntax on
@@ -51,21 +64,37 @@ let g:netrw_banner=0
 let g:airline_powerline_fonts=1 " Uses powerline fonts
 let g:airline#extensions#branch#enabled=1 " Shows current branch
 let g:airline#extensions#tabline#enabled = 1 " Show buffers in tabs
+let g:airline#extensions#tmuxline#enabled = 0 " Disable overwrite tmux theme
+let g:pymode_virtualenv = 1
 
-" Jedi-vim
-let g:jedi#goto_definitions_command = "<leader>]"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#popup_on_dot = 0
-autocmd FileType python setlocal completeopt-=preview
+" FZF
+" Background fix
+let g:fzf_colors = { 'fg': ['fg', 'Normal'], 'bg': ['bg', 'Normal']}
+nnoremap <c-p> :FZF<cr>
+set completeopt-=preview
+let g:pymode_rope_complete_on_dot = 0
+
+" Python-mode
+" Override go to definition
+let g:pymode_rope_goto_definition_bind = "<C-]>"
+let g:pymode_folding = 0
+let g:pymode_python = 'python3'
+let g:pymode_rope_goto_definition_cmd = 'e'
+
+" NERDtree
+map <C-n> :NERDTreeToggle<CR>
+" Disable scrollbar for NERDtree in MacVim
+set guioptions-=L
 
 " vim plug
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'nvie/vim-flake8'
-Plug 'davidhalter/jedi-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'python-mode/python-mode'
+Plug 'scrooloose/nerdtree'
+Plug 'morhetz/gruvbox'
 call plug#end()
-
+colorscheme gruvbox " Sets colorscheme
