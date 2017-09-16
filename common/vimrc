@@ -1,5 +1,4 @@
-set encoding=utf-8
-set enc=utf-8       " Encoding UTF-8
+set shell=/bin/bash
 set number          " Shows line number
 set showmatch       " Show bracket matches
 set visualbell      " Disable beep, only visual bell
@@ -15,7 +14,7 @@ set ts=4            " Set indent 4 spaces
 set shiftwidth=4    " How much to indent using >>
 set softtabstop=4   " Affects tab press
 set ruler
-set colorcolumn=79  " Vertical ruler, PEP8 helper
+set colorcolumn=99  " Vertical ruler, PEP8 helper
 set undolevels=1000 " Steps of undo
 set backspace=indent,eol,start
 set relativenumber  " Changes line nr to relatives
@@ -41,8 +40,8 @@ set lazyredraw
 set ttyfast
 
 " Quicker buffer change
-map <C-J> :bnext<CR>
-map <C-K> :bprev<CR>
+map <C-K> :bnext<CR>
+map <C-J> :bprev<CR>
 
 " Vim swap files and backups directory
 set backupdir=~/.vim/backup
@@ -67,28 +66,29 @@ let g:airline#extensions#tabline#enabled = 1 " Show buffers in tabs
 let g:airline#extensions#tmuxline#enabled = 0 " Disable overwrite tmux theme
 let g:pymode_virtualenv = 1
 
-" FZF
-" Background fix
-let g:fzf_colors = { 'fg': ['fg', 'Normal'], 'bg': ['bg', 'Normal']}
-nnoremap <c-p> :FZF<cr>
-set completeopt-=preview
-let g:pymode_rope_complete_on_dot = 0
-
 " Python-mode
 " Override go to definition
+let g:pymode_rope_complete_on_dot = 0
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_folding = 0
 let g:pymode_python = 'python3'
 let g:pymode_rope_goto_definition_cmd = 'e'
+let g:pymode_options_max_line_length = 99
+let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_lint_options_pylint = {'max-line-length': g:pymode_options_max_line_length}
+set completeopt-=preview
 
 " NERDtree
 map <C-n> :NERDTreeToggle<CR>
+let NERDTreeIgnore = ['\.pyc$', '__pycache__$']
 " Disable scrollbar for NERDtree in MacVim
 set guioptions-=L
 
+" Ack.vim to use ag
+let g:ackprg = 'ag --vimgrep'
+
 " vim plug
 call plug#begin('~/.vim/plugged')
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-fugitive'
@@ -96,5 +96,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'python-mode/python-mode'
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mileszs/ack.vim'
 call plug#end()
-colorscheme gruvbox " Sets colorscheme
+c
