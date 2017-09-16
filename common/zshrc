@@ -1,0 +1,23 @@
+# Path to your oh-my-zsh installation.
+export ZSH=~/.oh-my-zsh
+
+# Theme
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+export LC_ALL=pl_PL.UTF-8
+export LANG=pl_PL.UTF-8
+export EDITOR='vim'
+
+# Fix for tmux names
+export DISABLE_AUTO_TITLE=true
+
+# Aliases
+if [[ `uname` == 'Darwin' ]] then
+    alias mvim='/Applications/MacVim.app/Contents/bin/mvim'
+    alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport'
+    alias python='python3'
+fi
