@@ -99,4 +99,4 @@ Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 call plug#end()
-c
+colorscheme gruvbox " Sets colorscheme
