@@ -97,7 +97,7 @@ set completeopt-=preview
 
 " YouCompleteMe
 map <C-]> :YcmCompleter GoTo<CR>
-
+let g:ycm_python_binary_path = 'python'
 " NERDtree
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeIgnore = ['\.pyc$', '__pycache__$']
