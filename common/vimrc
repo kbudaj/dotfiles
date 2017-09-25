@@ -27,6 +27,10 @@ set t_Co=256        " 256 colors
 set clipboard=unnamed " Make yank copy to global clipboard
 set list lcs=trail:·,tab:»· " Prettier white space characters
 set splitright      " Makes split open on right
+set gcr=a:blinkon0  " Disable cursor blinking
+set autoread        " Autoload changes
+set shortmess+=A    " Ignore annoying swapfile messages
+set scrolloff=3     " start scrolling 3 lines before edge of viewport
 let mapleader = "," " Sets map leader
 
 "" Indention for html
@@ -44,9 +48,22 @@ map <C-K> :bnext<CR>
 map <C-J> :bprev<CR>
 
 " Vim swap files and backups directory
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
+if exists('$SUDO_USER')
+  set nobackup                        " don't create root-owned files
+  set nowritebackup                   " don't create root-owned files
+else
+  set backupdir=~/local/.vim/tmp/backup
+  set backupdir+=~/.vim/tmp/backup    " keep backup files out of the way
+  set backupdir+=.
+endif
 
+if exists('$SUDO_USER')
+  set noswapfile                      " don't create root-owned files
+else
+  set directory=~/local/.vim/tmp/swap//
+  set directory+=~/.vim/tmp/swap//    " keep swap files out of the way
+  set directory+=.
+endif
 
 set t_Co=256 " Terminal 256 colors
 set bg=dark " Dark background
@@ -67,16 +84,19 @@ let g:airline#extensions#tmuxline#enabled = 0 " Disable overwrite tmux theme
 let g:pymode_virtualenv = 1
 
 " Python-mode
-" Override go to definition
+let g:pymode_rope = 0
+let g:pymode_rope_lookup_project = 0
 let g:pymode_rope_complete_on_dot = 0
-let g:pymode_rope_goto_definition_bind = "<C-]>"
+let g:pymode_rope_autoimport = 0
 let g:pymode_folding = 0
-let g:pymode_python = 'python3'
 let g:pymode_rope_goto_definition_cmd = 'e'
 let g:pymode_options_max_line_length = 99
 let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
 let g:pymode_lint_options_pylint = {'max-line-length': g:pymode_options_max_line_length}
 set completeopt-=preview
+
+" YouCompleteMe
+map <C-]> :YcmCompleter GoTo<CR>
 
 " NERDtree
 map <C-n> :NERDTreeToggle<CR>
@@ -98,5 +118,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 colorscheme gruvbox " Sets colorscheme
