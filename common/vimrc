@@ -107,6 +107,9 @@ set guioptions-=L
 " Ack.vim to use ag
 let g:ackprg = 'ag --vimgrep'
 
+" Bind vim-bbye, delete buffer without closing split
+map <Leader>q :Bdelete<CR>
+
 " vim plug
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
@@ -119,5 +122,6 @@ Plug 'morhetz/gruvbox'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mileszs/ack.vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'moll/vim-bbye'
 call plug#end()
 colorscheme gruvbox " Sets colorscheme
